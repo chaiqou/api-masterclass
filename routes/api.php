@@ -4,8 +4,10 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::prefix('v1')->group(function () {
+    require_once __DIR__.'/api_v1.php';
+});
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::prefix('v2')->group(function () {
+    require_once __DIR__.'/api_v2.php';
+});
