@@ -13,4 +13,12 @@ trait ApiResponses
          'status_code' => $statusCode
      ], $statusCode);
  }
+
+    protected function error($message, $statusCode = 404): JsonResponse
+    {
+        return response()->json([
+            'message' => $message,
+            'status_code' => $statusCode
+        ], $statusCode);
+    }
 }
