@@ -18,7 +18,7 @@ class AuthController extends Controller
 
         $user = User::firstWhere('email', $request->email);
 
-        $token = $user->createToken('token')->plainTextToken;
+        $token = $user->createToken('token', ["*"], now()->addDay())->plainTextToken;
 
         return $this->success('Login successful', [
             'token' => $token
